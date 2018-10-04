@@ -13,13 +13,9 @@
 <h2>Index</h2>
 
 @foreach(var item in Model) {
-<div class="review">
-    <h4>@item.Name</h4>
-    <span>@item.Rating</span>
-    <p>@item.City, @item.Country</p>
-
-    <span class="right">
-        @Html.ActionLink("Edit", "Edit", new { id=item.Id })
-    </span>
-</div>
+    @Html.Partial("_ReviewDiv", item)
 }
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
