@@ -5,6 +5,7 @@
 }
 
 <h2>Index</h2>
+<p>Shwing the latest @Model.Count() reviews</p>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -38,7 +39,10 @@
             @Html.DisplayFor(modelItem => item.Country)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Rating)
+            @*@Html.DisplayFor(modelItem => item.Rating)*@
+            @item.Rating / 10
+            @*R@(item.Rating) places characters adjacent to literal expressions*@
+            @*@@OdeToCode outputs a literal @ symbol*@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
