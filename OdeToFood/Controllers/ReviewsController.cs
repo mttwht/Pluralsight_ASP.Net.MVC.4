@@ -47,23 +47,21 @@ namespace OdeToFood.Controllers
         // GET: Reviews/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var review = _reviews.Single(r => r.Id == id);
+
+            return View(review);
         }
 
         // POST: Reviews/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
-
+            var review = _reviews.Single(r => r.Id == id);
+            if( TryUpdateModel(review) ) {
+                // save in database
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(review);
         }
 
         // GET: Reviews/Delete/5
