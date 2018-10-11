@@ -13,7 +13,28 @@ namespace OdeToFood.Controllers
 
         public ActionResult Index()
         {
-            var model = _db.Restaurants.ToList();
+            //var model = from r in _db.Restaurants
+            //                //orderby r.Name ascending
+            //                //orderby r.Reviews.Count descending
+            //            orderby r.Reviews.Average(review => review.Rating) descending
+            //            //select r;
+            //            select new RestaurantListViewModel {
+            //                Id = r.Id,
+            //                Name = r.Name,
+            //                City = r.City,
+            //                Country = r.Country,
+            //                ReviewCount = r.Reviews.Count(),
+            //            };
+
+            var model = _db.Restaurants
+                .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+                .Select(r => new RestaurantListViewModel {
+                    Id = r.Id,
+                    Name = r.Name,
+                    City = r.City,
+                    Country = r.Country,
+                    ReviewCount = r.Reviews.Count(),
+                });
 
             return View(model);
         }
